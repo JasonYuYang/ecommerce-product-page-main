@@ -1,74 +1,65 @@
 {
-  "name": "ecommerce-product-page-main",
+  "name": "app",
   "version": "1.0.0",
-  "description": "![Design preview for the E-commerce product page coding challenge](./design/desktop-preview.jpg)",
-  "main": "index.js",
+  "description": "",
+  "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack serve --config ./scripts/webpack.dev.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./scripts/webpack.common.js",
-    "prepare": "husky install"
+    "build": "webpack --config ./webpack/webpack.prod.js",
+    "dll": "webpack --config ./webpack/webpack.dll.js",
+    "start": "webpack server --config ./webpack/webpack.dev.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JasonYang840723/ecommerce-product-page-main.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JasonYang840723/ecommerce-product-page-main/issues"
-  },
-  "homepage": "https://github.com/JasonYang840723/ecommerce-product-page-main#readme",
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router": "^6.0.2",
-    "webpack": "^5.64.2",
-    "webpack-cli": "^4.9.1"
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
-    "@babel/plugin-proposal-decorators": "^7.16.4",
-    "@babel/plugin-transform-runtime": "^7.16.4",
-    "@babel/preset-env": "^7.16.4",
+    "@babel/eslint-parser": "^7.16.3",
+    "@babel/plugin-transform-runtime": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
-    "@babel/runtime-corejs3": "^7.16.3",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.2",
-    "@types/react": "^17.0.36",
+    "@babel/runtime": "^7.16.3",
+    "@fullhuman/postcss-purgecss": "^4.0.3",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
+    "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
-    "autoprefixer": "^10.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "add-asset-html-webpack-plugin": "^3.2.0",
     "babel-loader": "^8.2.3",
-    "clean-webpack-plugin": "^4.0.0",
-    "core-js": "^3.19.1",
-    "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
-    "css-minimizer-webpack-plugin": "^3.1.4",
-    "cssnano": "^5.0.11",
-    "eslint": "^8.3.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-react": "^7.27.1",
+    "css-minimizer-webpack-plugin": "^3.1.2",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "^19.0.0",
+    "eslint-config-airbnb-typescript": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-webpack-plugin": "^3.1.0",
+    "fork-ts-checker-webpack-plugin": "^6.4.0",
     "html-webpack-plugin": "^5.5.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.1.2",
     "mini-css-extract-plugin": "^2.4.5",
-    "postcss": "^8.3.11",
     "postcss-loader": "^6.2.0",
-    "prettier": "^2.4.1",
-    "pretty-quick": "^3.1.2",
+    "postcss-normalize": "^10.0.1",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-px-to-viewport": "^1.1.1",
     "progress-bar-webpack-plugin": "^2.1.0",
     "react-refresh": "^0.11.0",
-    "resolve-url-loader": "^4.0.0",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
+    "speed-measure-webpack-plugin": "^1.5.0",
     "style-loader": "^3.3.1",
-    "style-resources-loader": "^1.4.1",
-    "terser-webpack-plugin": "^5.2.5",
-    "typescript": "^4.5.2",
-    "webpack-dev-server": "^4.5.0",
-    "webpack-merge": "^5.8.0"
+    "thread-loader": "^3.0.4",
+    "typescript": "^4.4.4",
+    "webpack": "^5.62.1",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
   },
   "browserslist": {
     "development": [
@@ -81,20 +72,5 @@
       "not dead",
       "not op_mini all"
     ]
-  },
-  "sideEffects": [
-    "*.css",
-    "*.sass"
-  ],
-  "lint-staged": {
-    "*.{js,css,md,ts,tsx,jsx}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && pretty-quick --staged"
-    }
   }
 }

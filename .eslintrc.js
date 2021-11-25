@@ -1,25 +1,22 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    commonjs: true,
-    node: true,
-  },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'eslint-config-prettier',
-  ],
+  root: true,
   parser: '@typescript-eslint/parser',
+  extends: [
+    'airbnb',
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:react/jsx-runtime',
+  ],
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 13,
-    sourceType: 'module',
+    project: './tsconfig.json',
   },
-  plugins: ['react', '@typescript-eslint'],
-
-  rules: { '@typescript-eslint/no-var-requires': 0 },
-}
+  ignorePatterns: [".*", "webpack", "public", "node_modules", "dist"], // 忽略指定文件夹或文件
+  rules: {
+    // 在这里添加需要覆盖的规则
+    "react/function-component-definition": 0,
+    "quotes": ["error", "single"],
+    "jsx-quotes": ["error", "prefer-single"]
+  }
+};

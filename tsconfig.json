@@ -1,12 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "./src", //源码目录
     "target": "es5",
-    "jsx": "react",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "outDir": "dist",
-    /* 指定要包含在编译中的库文件——引用类库——即申明文件，如果输出的模块方式是 es5，就会默认引入 "dom","es5","scripthost" 。如果在 TS 中想要使用一些 ES6 以上版本的语法，就需要引入相关的类库 */
     "lib": [
       "webworker",
       "dom",
@@ -17,42 +11,20 @@
       "dom.iterable",
       "scripthost",
       "esnext"
-    ], // 要包含在编译中的依赖库文件列表
-    "allowJs": true, // 允许编译 JavaScript 文件
-    // 检查 JS 文件
-    "checkJs": true,
-    "baseUrl": "./",
-    "paths": {
-      "@src/*": ["./src/*"],
-      "@packages/*": ["./src/packages/*"],
-      "@containers/*": ["./src/containers/*"]
-    },
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
-    "skipLibCheck": true, // 跳过所有声明文件的类型检查
-    "allowSyntheticDefaultImports": true, // 允许从没有默认导出的模块进行默认导入
-    "resolveJsonModule": true, // 允许使用 .json 扩展名导入的模块
-    /* react 模式下：直接将 JSX 编译成 JS，会生成 React.createElement 的形式，在使用前不需要再进行转换操作了，输出文件的扩展名为 .js */
-    /* preserve 模式下：不会将 JSX 编译成 JS，生成代码中会保留 JSX，以供后续的转换操作使用（比如：Babel）。 另外，输出文件会带有 .jsx 扩展名 */
-    /* react-native 模式下：相当于 preserve，它也保留了所有的 JSX，但是输出文件的扩展名是 .js */
-    "sourceMap": true, // 生成相应的.map文件
-    "declaration": true, // 生成相应的.d.ts文件
-    "allowUmdGlobalAccess": true,
-    "experimentalDecorators": true, // 启用对ES装饰器的实验性支持
-    "incremental": true, // 通过从以前的编译中读取/写入信息到磁盘上的文件来启用增量编译
     "forceConsistentCasingInFileNames": true,
-    /* 当目标是ES5或ES3的时候提供对for-of、扩展运算符和解构赋值中对于迭代器的完整支持 */
-    "downlevelIteration": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    // 不允许使用隐式的 any 类型
-    "noImplicitAny": false,
-    // 不允许 this 有隐式的 any 类型，即 this 必须有明确的指向
-    "noImplicitThis": false,
-    // 不允许把 null、undefined 赋值给其他类型变量
-    "strictNullChecks": false
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"] // *** 不进行类型检查的文件 ***
