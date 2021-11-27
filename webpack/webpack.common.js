@@ -1,29 +1,29 @@
-const path = require('path')
-const glob = require('glob')
-const webpack = require('webpack')
-const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
-const HtmlWebPackPlugin = require('html-webpack-plugin') // 生成html文件并自动引入打包的文件
-const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 将css从js中分离为单独的css文件
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin') // 压缩css
-const ESLintPlugin = require('eslint-webpack-plugin')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin') // react热更新
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin') // 在终端显示ts错误提示
-const ProgressBarPlugin = require('progress-bar-webpack-plugin') // 显示编译进度条
+const path = require('path');
+const glob = require('glob');
+const webpack = require('webpack');
+const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin'); // 生成html文件并自动引入打包的文件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 将css从js中分离为单独的css文件
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // 压缩css
+const ESLintPlugin = require('eslint-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'); // react热更新
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin'); // 在终端显示ts错误提示
+const ProgressBarPlugin = require('progress-bar-webpack-plugin'); // 显示编译进度条
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin // 打包文件体积分析
 
-const paths = require('./paths')
+const paths = require('./paths');
 
-const cssRegex = /\.css$/
-const cssModuleRegex = /\.module\.css$/
-const sassRegex = /\.(scss|sass)$/
-const sassModuleRegex = /\.module\.(scss|sass)$/
+const cssRegex = /\.css$/;
+const cssModuleRegex = /\.module\.css$/;
+const sassRegex = /\.(scss|sass)$/;
+const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 module.exports = webpackEnv => {
-  const isEnvDevelopment = webpackEnv === 'development'
-  const isEnvProduction = webpackEnv === 'production'
+  const isEnvDevelopment = webpackEnv === 'development';
+  const isEnvProduction = webpackEnv === 'production';
   const cssLocalIdentName = isEnvDevelopment
     ? '[path][name]-[local]-[hash:base64:5]'
-    : '[hash:base64:8]'
+    : '[hash:base64:8]';
 
   const getStyleLoader = (cssOptions, loader) => {
     const loaders = [
@@ -80,14 +80,14 @@ module.exports = webpackEnv => {
           },
         },
       },
-    ].filter(Boolean)
+    ].filter(Boolean);
 
     if (loader) {
-      loaders.push(loader)
+      loaders.push(loader);
     }
 
-    return loaders
-  }
+    return loaders;
+  };
 
   return {
     // 模式配置：
@@ -135,7 +135,12 @@ module.exports = webpackEnv => {
     // 解析配置
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
-      alias: {},
+      alias: {
+        '@src': path.resolve(__dirname, '../src'),
+        '@style': path.resolve(__dirname, '../src/style/index.scss'),
+        '@images': path.resolve(__dirname, '../src/assets/images'),
+      },
+
       symlinks: false,
     },
 
@@ -232,9 +237,28 @@ module.exports = webpackEnv => {
                 'sass-loader'
               ),
             },
+            //處理svg在react中
+            {
+              test: /\.svg$/,
+              oneOf: [
+                {
+                  issuer: /\.[jt]sx?$/,
+                  resourceQuery: /react/, // *.svg?react
+                  use: ['@svgr/webpack'],
+                },
+                {
+                  type: 'asset',
+                  parser: {
+                    dataUrlCondition: {
+                      maxSize: 200,
+                    },
+                  },
+                },
+              ],
+            },
             // 处理图片资源
             {
-              test: /\.(png|svg|jpg|jpeg|gif)$/,
+              test: /\.(png|jpg|jpeg|gif)$/,
               // test: /\.(woff|woff2|eot|ttf|otf)$/i,
               // exclude: /\.(js|mjs|ejs|jsx|ts|tsx|css|scss|sass)$/i,
               type: 'asset', // 在resource和inline中自动选择，默认小于8kb使用inline，否则使用resource
@@ -302,5 +326,5 @@ module.exports = webpackEnv => {
 
       isEnvDevelopment && new ReactRefreshWebpackPlugin(),
     ].filter(Boolean),
-  }
-}
+  };
+};

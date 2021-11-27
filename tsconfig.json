@@ -12,6 +12,12 @@
       "scripthost",
       "esnext"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@style/*": ["src/style/*"],
+      "@images/*": ["src/assets/images/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

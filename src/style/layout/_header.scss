@@ -1,0 +1,19 @@
+@use '../abstracts/' as *;
+@use '../base/' as *;
+
+.header {
+  &__wrapper {
+    min-height: rem(130);
+    border-bottom: 1px solid $black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__nav {
+    display: flex;
+  }
+  &__user {
+    display: flex;
+    align-items: center;
+  }
+}
