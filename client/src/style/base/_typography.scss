@@ -1,0 +1,17 @@
+@use '../abstracts' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@include font-face('DM', '../../src/assets/fonts/DMSerifDisplay-Regular.ttf');
+
+:root {
+  --typeHeadingPrimary: 'DM', serif;
+  --typeBasePrimary: 'Poppins', sans-serif;
+  --slide-aspect-ratio: 2049 / 1150;
+}
+html {
+  font-size: rem(16px);
+}
+body {
+  font-family: var(--typeBasePrimary);
+}

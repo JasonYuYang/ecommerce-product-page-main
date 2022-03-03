@@ -1,0 +1,76 @@
+@use '../abstracts/' as *;
+@use '../base/' as *;
+
+.sales-event {
+  &__wrapper {
+    width: 100%;
+    position: relative;
+    height: auto;
+    padding: rem(16) rem(25) 0 rem(25);
+    border-radius: rem(30);
+  }
+
+  &__info {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: rem(10);
+    &--title {
+      color: $p-orange;
+      font-size: rem(20);
+      font-weight: 700;
+      margin-right: rem(10);
+    }
+    &--viewall-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: rem(70);
+      background-color: $s-orange;
+      color: white;
+      padding: rem(2);
+      font-size: rem(12);
+      font-weight: 500;
+      border-radius: rem(5);
+    }
+  }
+  &__product-slider__wrapper {
+    margin-bottom: rem(16);
+    width: 100%;
+    .swiper-container {
+      padding: rem(2) rem(2) rem(20) rem(5);
+    }
+    .swiper-wrapper {
+      display: flex;
+      align-items: center;
+      .view-all-button {
+        &__wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        &__img {
+          width: rem(40);
+          height: rem(40);
+          border-radius: 50%;
+          border: 4px solid $p-orange;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          img {
+            width: rem(15);
+            height: rem(20);
+            filter: invert(47%) sepia(76%) saturate(1415%) hue-rotate(345deg) brightness(98%)
+              contrast(108%);
+          }
+        }
+        &__text {
+          color: $p-orange;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

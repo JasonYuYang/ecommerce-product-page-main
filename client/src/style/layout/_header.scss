@@ -1,0 +1,140 @@
+@use '../abstracts/' as *;
+@use '../base/' as *;
+
+.header {
+  &__wrapper {
+    min-height: rem(60);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 fluid(25, 6.7vw, 100);
+  }
+  &__menuwrapper {
+    display: flex;
+    align-items: center;
+    height: auto;
+  }
+  &__menu-icon {
+    height: rem(45);
+    width: rem(25);
+    position: relative;
+    &--checkbox {
+      display: none;
+    }
+    &--button {
+      @include abcenter;
+      display: block;
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1500;
+    }
+    &--icon {
+      @include abcenter;
+
+      &,
+      &::before,
+      &::after {
+        width: rem(20);
+        height: rem(3.25) !important;
+        border-radius: rem(10);
+        background-color: #69707d;
+        display: block;
+        border: none;
+        backface-visibility: hidden;
+        transition: all 0.2s;
+      }
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: all 0.2s;
+      }
+
+      &::before {
+        top: rem(-7);
+      }
+      &::after {
+        top: rem(7);
+      }
+    }
+    // &--button:hover &--icon {
+    //   background-color: black;
+    // }
+    // &--button:hover &--icon::before {
+    //   top: rem(-8);
+    //   background-color: black;
+    // }
+
+    // &--button:hover &--icon::after {
+    //   top: rem(8);
+    //   background-color: black;
+    // }
+
+    &--checkbox:checked + &--button &--icon {
+      background-color: transparent;
+    }
+
+    &--checkbox:checked + &--button &--icon::before {
+      top: 0;
+      transform: rotate(135deg);
+      background-color: black;
+    }
+
+    &--checkbox:checked + &--button &--icon::after {
+      top: 0;
+      transform: rotate(-135deg);
+      background-color: black;
+    }
+  }
+  &__nav {
+    display: flex;
+    &--logo {
+      font-family: var(--typeBasePrimary);
+      font-weight: 700;
+      font-size: rem(30);
+      margin-left: rem(20);
+      color: $db;
+      .logodot {
+        color: $p-orange;
+      }
+      .logoit {
+        color: $p-orange;
+      }
+    }
+    &--logo.secondary {
+      margin-left: 0;
+      display: inline-block;
+      font-size: rem(20);
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    width: rem(60);
+    justify-content: space-between;
+    &--search {
+      cursor: pointer;
+      &:hover {
+        fill: $p-orange;
+      }
+    }
+
+    &--cart {
+      cursor: pointer;
+      &:hover {
+        fill: $p-orange;
+      }
+    }
+    &--avatar {
+      width: rem(30);
+      height: rem(30);
+    }
+  }
+}

@@ -1,0 +1,142 @@
+@use '../abstracts/' as *;
+@use '../base/' as *;
+
+$border: white;
+
+.count-down-timer {
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: rem(20);
+}
+
+.flipClock {
+  display: flex;
+  width: rem(90);
+  height: 100%;
+  gap: rem(5);
+}
+
+.flipUnitContainer {
+  display: block;
+  position: relative;
+  width: rem(20);
+  height: rem(20);
+  perspective-origin: 50% 50%;
+  perspective: rem(300);
+  background-color: $black;
+  border-radius: rem(3);
+  box-shadow: 0px 10px 10px -10px grey;
+}
+
+.upperCard,
+.lowerCard {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+
+  span {
+    color: white;
+    font-size: rem(12);
+  }
+}
+
+.upperCard {
+  align-items: flex-end;
+  border-top-left-radius: rem(3);
+  border-top-right-radius: rem(3);
+
+  span {
+    transform: translateY(50%);
+    font-size: rem(12);
+  }
+}
+
+.lowerCard {
+  align-items: flex-start;
+  border-bottom-left-radius: rem(3);
+  border-bottom-right-radius: rem(3);
+  span {
+    transform: translateY(-50%);
+    font-size: rem(12);
+  }
+}
+
+.flipCard {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  backface-visibility: hidden;
+
+  span {
+    font-size: rem(12);
+  }
+
+  &.unfold {
+    top: 50%;
+    align-items: flex-start;
+    transform-origin: 50% 0%;
+    transform: rotateX(180deg); // from 180 to 0
+    background-color: $black;
+    border-bottom-left-radius: rem(3);
+    border-bottom-right-radius: rem(3);
+
+    span {
+      transform: translateY(-50%);
+      color: white;
+      font-size: rem(12);
+    }
+  }
+
+  &.fold {
+    top: 0%;
+    align-items: flex-end;
+    transform-origin: 50% 100%;
+    transform: rotateX(0deg); // from 0 to -180
+    background-color: $black;
+    border-top-left-radius: rem(3);
+    border-top-right-radius: rem(3);
+
+    span {
+      transform: translateY(50%);
+      color: white;
+      font-size: rem(12);
+    }
+  }
+}
+.fold {
+  @include animateFlip(fold, $easeInOut, 0.6s);
+  transform-style: preserve-3d;
+}
+
+.unfold {
+  @include animateFlip(unfold, $easeInOut, 0.6s);
+  transform-style: preserve-3d;
+}
+
+@keyframes fold {
+  0% {
+    transform: rotateX(0deg);
+  }
+
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+
+@keyframes unfold {
+  0% {
+    transform: rotateX(180deg);
+  }
+
+  100% {
+    transform: rotateX(0deg);
+  }
+}

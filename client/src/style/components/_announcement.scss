@@ -1,0 +1,32 @@
+@use '../abstracts/' as *;
+@use '../base/' as *;
+.announcement {
+  position: relative;
+  &-event {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: rem(16) fluid(25, 6.7vw, 100);
+    background-color: $p-orange;
+    color: white;
+    font-size: rem(10);
+    & span.bold {
+      font-size: rem(12);
+      font-weight: 900;
+    }
+  }
+  &-event.close {
+    display: none;
+  }
+  svg {
+    position: absolute;
+    top: rem(16);
+    right: fluid(25, 6.7vw, 100);
+    fill: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      fill: black;
+    }
+  }
+}
